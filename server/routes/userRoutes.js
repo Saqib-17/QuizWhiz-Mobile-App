@@ -4,7 +4,8 @@ import User from "../models/user.js";
 const router = express.Router();
 
 /**
-  * Fetch all users
+ * ✅ GET /api/users
+ * Returns all users (for testing or admin purposes)
  */
 router.get("/", async (req, res) => {
   try {
@@ -16,7 +17,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-
+/**
+ * ✅ POST /api/users
+ * Creates a new user (from mobile app or frontend)
+ */
 router.post("/", async (req, res) => {
   console.log("Request Body:", req.body);
 
