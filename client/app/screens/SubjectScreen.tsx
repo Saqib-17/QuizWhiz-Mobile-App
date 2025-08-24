@@ -18,7 +18,7 @@ export default function SubjectScreen() {
     ],
     Commerce: [
       { name: 'business', image: require('../../assets/images/businessSub.png') },
-      { name: 'sccounting', image: require('../../assets/images/Accounting.png') },
+      { name: 'accounting', image: require('../../assets/images/Accounting.png') },
       { name: 'economics', image: require('../../assets/images/Economics.png') },
     ],
     Arts: [
