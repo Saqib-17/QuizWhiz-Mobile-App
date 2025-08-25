@@ -1,13 +1,9 @@
-// app/screens/GroupScreen.tsx
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import BottomHeader from '../components/BottomHeader'; // ✅ Use bottom header like Login page
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import BottomHeader from '../components/BottomHeader';
+import ProtectedRoute from '../components/ProtectedRoute'; // ✅ Import default correctly
 
-export default function GroupScreen() {
-  const navigation = useNavigation();
-
+function GroupScreen({ navigation }) {
   const groups = [
     { name: 'Commerce', image: require('../../assets/images/business.png') },
     { name: 'Science', image: require('../../assets/images/science.png') },
@@ -16,20 +12,12 @@ export default function GroupScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Scrollable Content */}
-      <ScrollView 
-        contentContainerStyle={styles.scrollContent} 
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Page Title */}
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Which Group are you in?</Text>
-
-        {/* Group Cards */}
         {groups.map((group, index) => (
           <TouchableOpacity
             key={index}
             style={styles.card}
-            activeOpacity={0.8}
             onPress={() => navigation.navigate('Subject', { group: group.name })}
           >
             <Image source={group.image} style={styles.cardImage} />
@@ -37,12 +25,13 @@ export default function GroupScreen() {
           </TouchableOpacity>
         ))}
       </ScrollView>
-
-      {/* ✅ Fixed Bottom Header */}
       <BottomHeader />
     </SafeAreaView>
   );
 }
+
+export default ProtectedRoute(GroupScreen); // ✅ Wrap with HOC
+
 
 const styles = StyleSheet.create({
   container: {
